@@ -1,6 +1,11 @@
 # ETS2 Widget
 
+> ⚠️ Beta version — ETS2 Widget is currently in active development.  
+> Some features may be incomplete, unstable, or change between updates.
+
 ETS2 Widget is a lightweight overlay for Euro Truck Simulator 2 that shows live driving data from the game. It displays speed, max speed, route information, delivery status, and progress while recording kilometers with TrucksBook.
+
+The project is already usable for everyday gameplay, but you may occasionally encounter bugs or unexpected behavior. Feedback and bug reports are always welcome.
 
 ## How to use
 
