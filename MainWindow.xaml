@@ -60,7 +60,7 @@
         </Style>
     </Window.Resources>
 
-    <Border Background="#D91A1C20" CornerRadius="0" Padding="15">
+    <Border x:Name="MainBorder" Background="#1A1C20" CornerRadius="0" Padding="15">
         <Border.Effect>
             <DropShadowEffect Color="Black" BlurRadius="20" Opacity="0.6" Direction="270" ShadowDepth="5"/>
         </Border.Effect>
@@ -107,7 +107,7 @@
 
                 <!-- ROW 2: Work Status -->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,5">
-                    <TextBlock Text="Status: " Foreground="White" FontSize="16" FontWeight="SemiBold"/>
+                    <TextBlock x:Name="StatusLabel" Text="Status: " Foreground="White" FontSize="16" FontWeight="SemiBold"/>
                     <TextBlock x:Name="StatusValue" Text="Waiting..." Foreground="#A0A0A0" FontSize="16" FontWeight="SemiBold"/>
                     <Border x:Name="StatusCheckIconContainer" Visibility="Collapsed" BorderBrush="#52C14F" BorderThickness="2" CornerRadius="0" Width="20" Height="20" Background="Transparent" VerticalAlignment="Center" Margin="8,0,0,0">
                         <Path Data="M 4,10 L 8,14 L 15,5" Stroke="#52C14F" StrokeThickness="2" Stretch="Uniform" Margin="2"/>
@@ -118,7 +118,7 @@
                 <TextBlock Grid.Row="3" x:Name="Route" Text="ROUTE: NOT DEFINED" Foreground="White" FontSize="20" FontWeight="Bold" TextWrapping="Wrap" MaxHeight="60" Margin="0,0,0,5"/>
 
                 <!-- ROW 4: Progress Bar -->
-                <Border Grid.Row="4" Background="#2A2C31" CornerRadius="0" Height="12" Margin="0,10,0,10" BorderBrush="#3A3C42" BorderThickness="1">
+                <Border x:Name="ProgressBorder" Grid.Row="4" Background="#2A2C31" CornerRadius="0" Height="12" Margin="0,10,0,10" BorderBrush="#3A3C42" BorderThickness="1">
                     <ProgressBar x:Name="JobProgressBar" Minimum="0" Maximum="1" Value="0" Background="Transparent" Foreground="#52C14F" BorderThickness="0">
                         <ProgressBar.Template>
                             <ControlTemplate TargetType="ProgressBar">
@@ -144,20 +144,20 @@
                     </Grid.RowDefinitions>
 
                     <!-- Headers -->
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="SPEED" Foreground="#888888" FontSize="12" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="MAX" Foreground="#888888" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="TYPE" Foreground="#888888" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="SpeedHeader" Grid.Row="0" Grid.Column="0" Text="SPEED" Foreground="#888888" FontSize="12" FontWeight="Bold"/>
+                    <TextBlock x:Name="MaxHeader" Grid.Row="0" Grid.Column="1" Text="MAX" Foreground="#888888" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="TypeHeader" Grid.Row="0" Grid.Column="2" Text="TYPE" Foreground="#888888" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right"/>
 
                     <!-- SPEED Value -->
                     <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom">
                         <TextBlock x:Name="SpeedValue" Text="0" Foreground="White" FontSize="52" FontWeight="Bold" Margin="0,0,0,-8" Width="31"/>
-                        <TextBlock Text="km/h" Foreground="White" FontSize="14" VerticalAlignment="Bottom" Margin="2,0,0,0"/>
+                        <TextBlock x:Name="SpeedUnit" Text="km/h" Foreground="White" FontSize="14" VerticalAlignment="Bottom" Margin="2,0,0,0"/>
                     </StackPanel>
 
                     <!-- MAX Value -->
                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                         <TextBlock x:Name="MaxSpeedValue" Text="0" Foreground="#F39C12" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,-10"/>
-                        <TextBlock Text="km/h" Foreground="White" FontSize="12"/>
+                        <TextBlock x:Name="MaxUnit" Text="km/h" Foreground="White" FontSize="12"/>
                     </StackPanel>
 
                     <!-- TYPE Value -->
@@ -172,16 +172,33 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="SETTINGS" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    <TextBlock x:Name="SettingsTitle" Grid.Row="0" Text="SETTINGS" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
                     <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="0,10,0,20">
                         <CheckBox x:Name="ChkShowDistance" Content="Show driving distance" Checked="Settings_Changed" Unchecked="Settings_Changed"/>
                         <CheckBox x:Name="ChkShowBottomInfo" Content="Show speed and delivery type" Checked="Settings_Changed" Unchecked="Settings_Changed" Margin="0,15,0,0"/>
+                        <CheckBox x:Name="ChkShowRoute" Content="Show route" Checked="Settings_Changed" Unchecked="Settings_Changed" Margin="0,15,0,0"/>
+                        <CheckBox x:Name="ChkShowProgress" Content="Show progress bar" Checked="Settings_Changed" Unchecked="Settings_Changed" Margin="0,15,0,0"/>
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,20,0,0">
+                            <TextBlock x:Name="OpacityLabel" Text="Opacity" Foreground="White" FontSize="14" FontWeight="SemiBold" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <Slider x:Name="OpacitySlider" Minimum="40" Maximum="100" Value="85" Width="160" ValueChanged="OpacitySlider_ValueChanged"/>
+                            <TextBlock x:Name="OpacityValue" Text="85%" Foreground="White" FontSize="14" FontWeight="SemiBold" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,20,0,0">
+                            <TextBlock x:Name="LanguageLabel" Text="Language" Foreground="White" FontSize="14" FontWeight="SemiBold" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="LanguageSelector" Width="160" SelectionChanged="LanguageSelector_SelectionChanged">
+                                <ComboBoxItem Content="English" Tag="en"/>
+                                <ComboBoxItem Content="Українська" Tag="uk"/>
+                            </ComboBox>
+                        </StackPanel>
                     </StackPanel>
 
-                    <Button Grid.Row="2" Content="Done" Click="BtnCloseSettings_Click" Background="#33FFFFFF" Foreground="White" BorderThickness="0" Height="30" Width="100" HorizontalAlignment="Center" Cursor="Hand">
+                    <Button x:Name="SettingsDoneButton" Grid.Row="2" Content="Done" Click="BtnCloseSettings_Click" Background="#33FFFFFF" Foreground="White" BorderThickness="0" Height="30" Width="100" HorizontalAlignment="Center" Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="3">
