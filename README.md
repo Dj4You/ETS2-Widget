@@ -1,9 +1,9 @@
-# ETS2 Widget
+# TruckSim Widget
 
-> ⚠️ Beta version — ETS2 Widget is currently in active development.  
+> ⚠️ Beta version — TruckSim Widget is currently in active development.  
 > Some features may be incomplete, unstable, or change between updates.
 
-ETS2 Widget is a lightweight overlay for Euro Truck Simulator 2 that shows live driving data from the game. It displays speed, max speed, route information, delivery status, and progress while recording kilometers with TrucksBook.
+TruckSim Widget is a lightweight overlay for Euro Truck Simulator 2 and American Truck Simulator that shows live driving data from the game. It displays speed, max speed, route information, delivery status, and progress while recording kilometers with TrucksBook.
 
 The project is already usable for everyday gameplay, but you may occasionally encounter bugs or unexpected behavior. Feedback and bug reports are always welcome.
 
@@ -13,4 +13,4 @@ The project is already usable for everyday gameplay, but you may occasionally en
 2. Copy `scs-telemetry.dll` from the `plugin` folder to the game's plugins directory:
    `..Steam\steamapps\common\Euro Truck Simulator 2\bin\win_x64\plugins`
 3. Launch Euro Truck Simulator 2.
-4. Start ETS2 Widget to see the overlay during gameplay.
+4. Start TruckSim Widget to see the overlay during gameplay.

@@ -132,7 +132,7 @@ namespace ETSOverlay
             MainBorder.Opacity = windowOpacity;
 
             string appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string folder = Path.Combine(appData, "ETSOverlay");
+            string folder = Path.Combine(appData, "TruckSimWidget");
             if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
 
             stateFilePath = Path.Combine(folder, "state.dat");
