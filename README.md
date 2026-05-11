@@ -12,5 +12,6 @@ The project is already usable for everyday gameplay, but you may occasionally en
 1. Make sure TrucksBook Client is installed and running.
 2. Copy `scs-telemetry.dll` from the `plugin` folder to the game's plugins directory:
    `..Steam\steamapps\common\Euro Truck Simulator 2\bin\win_x64\plugins`
-3. Launch Euro Truck Simulator 2.
-4. Start TruckSim Widget to see the overlay during gameplay.
+   `..SteamLibrary\steamapps\common\American Truck Simulator\bin\win_x64\plugins`
+4. Launch Euro Truck Simulator 2/American Truck Simulator.
+5. Start TruckSim Widget to see the overlay during gameplay.
